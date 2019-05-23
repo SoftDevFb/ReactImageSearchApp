@@ -1,0 +1,47 @@
+//Stops form from submitting if 
+//enter clicked as it does by default
+    onFormSubmit(event) {
+        event.preventDefault();
+    }
+
+Unsplash API Key
+900bce059776a6e5801bbe247f9cb24720b58650423812d00d4c211aef27a62e
+
+
+Example 1 Axios GET Request including .then to process Promise:
+
+    onSearchSubmit(term) {
+        //Call to Axios function (API Request)
+        axios.get('https://api.unsplash.com/search/photos', {
+            params: { query: term },
+            headers: {
+                Authorization: 'Client-ID 900bce059776a6e5801bbe247f9cb24720b58650423812d00d4c211aef27a62e'
+            }
+        }).then (response => {
+            console.log(response.data.results);
+        });
+    }
+
+Example 2 using async and await
+   async onSearchSubmit(term) {
+        const response = await axios.get('https://api.unsplash.com/search/photos', {
+            params: { query: term },
+            headers: {
+                Authorization: 'Client-ID 900bce059776a6e5801bbe247f9cb24720b58650423812d00d4c211aef27a62e'
+            }
+        });
+        console.log(response.data.results);
+    }
+
+Refactored as arrow function and setting state:
+onSearchSubmit = async (term) => {
+        //Call to Axios function (API Request)
+        const response = await axios.get('https://api.unsplash.com/search/photos', {
+            params: { query: term },
+            headers: {
+                Authorization: 'Client-ID 900bce059776a6e5801bbe247f9cb24720b58650423812d00d4c211aef27a62e'
+            }
+        });
+        
+        this.setState({ images: response.data.results });
+    }
